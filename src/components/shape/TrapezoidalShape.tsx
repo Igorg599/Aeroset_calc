@@ -29,7 +29,13 @@ function TrapezoidalShape() {
         setCalculation({...calculation, height: e.target.value.replace(/[^0-9.]/g, '')});
     }
 
-    calculation.square = Math.ceil((calculation.mediana * calculation.height) * 10) / 10;
+    if (!calculation.mediana || !calculation.height) {
+        calculation.square = 0;
+        calculation.perimeter = 0;
+    } else {
+        calculation.square = Math.ceil((calculation.mediana * calculation.height) * 10) / 10;
+        calculation.perimeter = Math.ceil((2 * calculation.mediana + 2 * calculation.height / 0.992546152) * 10) / 10;
+    }
 
     return (
       <Shape>

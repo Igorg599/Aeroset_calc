@@ -31,7 +31,6 @@ export const Figure = styled.div`
 
 export const FirstArrow = styled.img`
     position: absolute;
-    margin-top: -1px;
 `;
 
 export const SecondArrow = styled.img<{ top?: string }>`

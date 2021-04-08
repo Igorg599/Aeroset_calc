@@ -29,7 +29,13 @@ function RectangularShape() {
         setCalculation({...calculation, width: e.target.value.replace(/[^0-9.]/g, '')});
     }
 
-    calculation.square = Math.ceil((calculation.bigHeight * calculation.width) * 10) / 10;
+    if (!calculation.bigHeight || !calculation.width) {
+        calculation.square = 0;
+        calculation.perimeter = 0;
+    } else {
+        calculation.square = Math.ceil((calculation.bigHeight * calculation.width) * 10) / 10;
+        calculation.perimeter = Math.ceil((calculation.bigHeight * 2 + calculation.width * 2) * 10) / 10;
+    }
 
     return (
       <Shape>

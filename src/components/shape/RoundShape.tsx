@@ -24,6 +24,8 @@ function RoundShape() {
 
     calculation.square = Math.ceil(((calculation.diameter / 2 ) * (calculation.diameter / 2 ) * 3.1415926535) * 10) / 10;
 
+    calculation.perimeter = Math.ceil((2 * 3.1415926535 * calculation.diameter / 2) * 10) / 10;
+
     return (
       <Shape>
         <h2>{t('round_shape')}</h2>

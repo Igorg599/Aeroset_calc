@@ -2,10 +2,9 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
 import SmallVerticalArrow from '../../assets/icons/SmallVerticalArrow.svg';
 import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, Form, Result} from './styles';
+import { Shape, Line, Figure, SecondArrow, ThirdArrow, Form, Result} from './styles';
 
 function ArchedShape() {
     const {t} = useTranslation();
@@ -13,33 +12,30 @@ function ArchedShape() {
     const [calculation, setCalculation] = React.useState<{
         square: number,
         perimeter: number,
-        bigHeight: number,
-        smallHeight: number,
+        height: number,
         width: number
     }>({
         square: 0,
         perimeter: 0,
-        bigHeight: 0,
-        smallHeight: 0,
+        height: 0,
         width: 0
     })
 
-    const onValueBigHeight = (e: any) => {
-        setCalculation({...calculation, bigHeight: e.target.value.replace(/[^0-9.]/g, '')});
-    }
-
     const onValueSmallHeight = (e: any) => {
-        setCalculation({...calculation, smallHeight: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, height: e.target.value.replace(/[^0-9.]/g, '')});
     }
 
     const onValueWidth = (e: any) => {
         setCalculation({...calculation, width: e.target.value.replace(/[^0-9.]/g, '')});
     }
 
-    if (!calculation.smallHeight) {
-        calculation.square = 0
+    if (!calculation.height || !calculation.width) {
+        calculation.square = 0;
+        calculation.perimeter = 0;
     } else {
-        calculation.square = Math.ceil(((calculation.smallHeight * calculation.width) + ((calculation.width / 2) * (calculation.width / 2) / 2 * 3.1415926535)) * 10) / 10;  
+        calculation.square = Math.ceil(((calculation.height * calculation.width) + ((calculation.width / 2) * (calculation.width / 2) / 2 * 3.1415926535)) * 10) / 10;  
+
+        calculation.perimeter = Math.ceil(((+calculation.height) + (+calculation.height) + (+calculation.width) + (+calculation.width / 2 * 3.1415926535)) * 10) / 10;
     }
 
     return (
@@ -48,7 +44,7 @@ function ArchedShape() {
         <Line/>
         <Figure>
             <Form radius="84px 84px 0 0">
-                <FirstArrow src={BigVerticalArrow} alt="arrow"/>
+                {/* <FirstArrow src={BigVerticalArrow} alt="arrow"/>
                 <TextField
                     label={t('height')}
                     value={calculation.bigHeight === 0 ? null : calculation.bigHeight}
@@ -58,13 +54,13 @@ function ArchedShape() {
                     InputProps={{
                         endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
                     }}
-                />
+                /> */}
             </Form>
             <SecondArrow top="85px" src={SmallVerticalArrow} alt="arrow"/>
             <TextField
                 label={t('height')}
                 variant="outlined"
-                value={calculation.smallHeight === 0 ? null : calculation.smallHeight}
+                value={calculation.height === 0 ? null : calculation.height}
                 onChange={onValueSmallHeight}
                 style={{ width: 112, top: 98, marginLeft: 16 }}
                 InputProps={{
