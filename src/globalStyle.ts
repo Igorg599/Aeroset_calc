@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     min-height: 100vh;
-    width: calc(100vw - 17px);
+    width: 100vw;
     font-family: 'Roboto', 'Segoe UI',sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

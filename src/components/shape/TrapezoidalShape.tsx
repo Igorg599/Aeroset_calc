@@ -1,13 +1,35 @@
+import React from 'react';
 import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
-import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
 import SmallHorizontalArrow from '../../assets/icons/SmallHorizontalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, FormTrapezoidal, Result} from './styles';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, FormTrapezoidal, Result} from './styles';
 
 function TrapezoidalShape() {
     const {t} = useTranslation();
+
+    const [calculation, setCalculation] = React.useState<{
+        square: number,
+        perimeter: number,
+        mediana: number,
+        height: number
+    }>({
+        square: 0,
+        perimeter: 0,
+        mediana: 0,
+        height: 0
+    })
+
+    const onValueMediana = (e: any) => {
+        setCalculation({...calculation, mediana: e.target.value.replace(/[^0-9.]/g, '')});
+    }
+
+    const onValueHeight = (e: any) => {
+        setCalculation({...calculation, height: e.target.value.replace(/[^0-9.]/g, '')});
+    }
+
+    calculation.square = Math.ceil((calculation.mediana * calculation.height) * 10) / 10;
 
     return (
       <Shape>
@@ -18,7 +40,8 @@ function TrapezoidalShape() {
                 <FirstArrow src={SmallHorizontalArrow} alt="arrow" style={{ marginTop: 155, zIndex:11 }}/>
                 <TextField
                     label={t('median')}
-                    id="outlined-size-normal"
+                    value={calculation.mediana === 0 ? null : calculation.mediana}
+                    onChange={onValueMediana}
                     variant="outlined"
                     style={{ width: 112, marginTop: 155, zIndex:11 }}
                     InputProps={{
@@ -26,10 +49,11 @@ function TrapezoidalShape() {
                     }}
                 />
             </FormTrapezoidal>
-            <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow"/>
+            <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow" style={{ marginLeft: 6 }}/>
             <TextField
                 label={t('height')}
-                id="outlined-size-normal"
+                value={calculation.height === 0 ? null : calculation.height}
+                    onChange={onValueHeight}
                 variant="outlined"
                 style={{ width: 112, top: 54, marginLeft: 16 }}
                 InputProps={{
@@ -37,25 +61,15 @@ function TrapezoidalShape() {
                 }}
             />
         </Figure>
-        <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 6 }}/>
-        <TextField
-            label={t('width')}
-            id="outlined-size-normal"
-            variant="outlined"
-            style={{ width: 112, top: 24, marginLeft: 32 }}
-            InputProps={{
-                endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
-            }}
-        />
         <Result>
             <div>
                 <h3>{t('area')}</h3>
-                <p>12</p>
+                <p>{calculation.square}</p>
                 <h4>{t('square_meters')}</h4>
             </div>
             <div style={{ marginLeft: 67 }}>
                 <h3>{t('perimeter')}</h3>
-                <p>12</p>
+                <p>{calculation.perimeter}</p>
                 <h4>{t('meters')}</h4>
             </div>
         </Result>
