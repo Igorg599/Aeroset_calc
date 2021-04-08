@@ -2,39 +2,28 @@ import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
-import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
-import { Shape, Line, Figure, SecondArrow, ThirdArrow, Result, Form} from './styles';
+import { Shape, Line, Figure, FirstArrow, Form, Result} from './styles';
 
-function RectangularShape() {
+function RoundShape() {
     const {t} = useTranslation();
 
     return (
       <Shape>
-        <h2>{t('rectangular_shape')}</h2>
+        <h2>{t('round_shape')}</h2>
         <Line/>
         <Figure>
-            <Form radius="0">
-                <ThirdArrow src={BigHorizontalArrow} style={{ marginBottom: 20, marginRight: 2 }} alt="arrow"/>
+            <Form radius="84px">
+                <FirstArrow src={BigVerticalArrow} alt="arrow"/>
                 <TextField
-                    label={t('width')}
+                    label={t('diameter')}
                     id="outlined-size-normal"
                     variant="outlined"
-                    style={{ width: 112 }}
+                    style={{ width: 112, marginBottom: 6 }}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
                     }}
                 />
             </Form>
-            <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow"/>
-            <TextField
-                label={t('height')}
-                id="outlined-size-normal"
-                variant="outlined"
-                style={{ width: 112, top: 54, marginLeft: 16 }}
-                InputProps={{
-                    endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
-                }}
-            />
         </Figure>
         <Result>
             <div>
@@ -52,4 +41,4 @@ function RectangularShape() {
     );
 }
   
-export default RectangularShape;
+export default RoundShape;

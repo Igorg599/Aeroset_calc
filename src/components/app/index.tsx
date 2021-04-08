@@ -1,7 +1,6 @@
 import Gamburger from '../gamburger/Gamburger';
 import {useTranslation} from "react-i18next";
-import ArchedShape from '../shape/ArchedShape';
-import RectangularShape from '../shape/RectangularShape';
+import { ArchedShape, RectangularShape, TrapezoidalShape, RoundShape } from '../shape';
 import { AppWrapper, Forms } from "./styles";
 
 
@@ -15,6 +14,8 @@ function App() {
       <Forms>
         <ArchedShape/>
         <RectangularShape/>
+        <TrapezoidalShape/>
+        <RoundShape/>
       </Forms>
     </AppWrapper>
   );

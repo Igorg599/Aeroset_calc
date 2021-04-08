@@ -2,47 +2,47 @@ import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
-import SmallVerticalArrow from '../../assets/icons/SmallVerticalArrow.svg';
 import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, Form, Result} from './styles';
+import SmallHorizontalArrow from '../../assets/icons/SmallHorizontalArrow.svg';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, FormTrapezoidal, Result} from './styles';
 
-function ArchedShape() {
+function TrapezoidalShape() {
     const {t} = useTranslation();
 
     return (
       <Shape>
-        <h2>{t('arched_shape')}</h2>
+        <h2>{t('trapecoidal_shape')}</h2>
         <Line/>
         <Figure>
-            <Form radius="84px 84px 0 0">
-                <FirstArrow src={BigVerticalArrow} alt="arrow"/>
+            <FormTrapezoidal>
+                <FirstArrow src={SmallHorizontalArrow} alt="arrow" style={{ marginTop: 155, zIndex:11 }}/>
                 <TextField
-                    label={t('height')}
+                    label={t('median')}
                     id="outlined-size-normal"
                     variant="outlined"
-                    style={{ width: 112, marginBottom: 8 }}
+                    style={{ width: 112, marginTop: 155, zIndex:11 }}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
                     }}
                 />
-            </Form>
-            <SecondArrow top="85px" src={SmallVerticalArrow} alt="arrow"/>
+            </FormTrapezoidal>
+            <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow"/>
             <TextField
                 label={t('height')}
                 id="outlined-size-normal"
                 variant="outlined"
-                style={{ width: 112, top: 98, marginLeft: 16 }}
+                style={{ width: 112, top: 54, marginLeft: 16 }}
                 InputProps={{
                     endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
                 }}
             />
         </Figure>
-        <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 2 }}/>
+        <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 6 }}/>
         <TextField
             label={t('width')}
             id="outlined-size-normal"
             variant="outlined"
-            style={{ width: 112, top: 24, marginLeft: 28 }}
+            style={{ width: 112, top: 24, marginLeft: 32 }}
             InputProps={{
                 endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
             }}
@@ -63,4 +63,4 @@ function ArchedShape() {
     );
 }
   
-export default ArchedShape;
+export default TrapezoidalShape;
