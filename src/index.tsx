@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/app/index';
 import "./internationalization/i18n";
 import {GlobalStyle} from "./globalStyle";
 import * as serviceWorker from './serviceWorker';

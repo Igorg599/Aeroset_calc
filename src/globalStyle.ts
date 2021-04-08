@@ -8,14 +8,11 @@ export const GlobalStyle = createGlobalStyle`
    html, body {
     padding: 0;
     margin: 0;
-    height: 100%;
-    min-height: 100%;
-    min-width: 100%;
-    width: 100%;
+    min-height: 100vh;
+    width: calc(100vw - 17px);
     font-family: 'Roboto', 'Segoe UI',sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow:hidden;
     box-sizing: border-box;
     *, *:before, *:after {
     box-sizing: inherit;
