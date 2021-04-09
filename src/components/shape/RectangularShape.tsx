@@ -6,7 +6,11 @@ import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
 import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
 import { Shape, Line, Figure, SecondArrow, ThirdArrow, Result, Form} from './styles';
 
-function RectangularShape() {
+interface PropsTab {
+    active: number
+}
+
+function RectangularShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
@@ -38,7 +42,7 @@ function RectangularShape() {
     }
 
     return (
-      <Shape>
+      <Shape style={ active === 0 || active === 2 ? {  display: "block" } : {  display: "none" }}>
         <h2>{t('rectangular_shape')}</h2>
         <Line/>
         <Figure>

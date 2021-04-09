@@ -4,9 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SmallVerticalArrow from '../../assets/icons/SmallVerticalArrow.svg';
 import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
-import { Shape, Line, Figure, SecondArrow, ThirdArrow, Form, Result} from './styles';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, Form, Result} from './styles';
 
-function ArchedShape() {
+interface PropsTab {
+    active: number
+}
+
+function ArchedShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
@@ -39,22 +43,22 @@ function ArchedShape() {
     }
 
     return (
-      <Shape>
+      <Shape style={ active === 0 || active === 1 ? {  display: "block" } : {  display: "none" }}>
         <h2>{t('arched_shape')}</h2>
         <Line/>
         <Figure>
             <Form radius="84px 84px 0 0">
-                {/* <FirstArrow src={BigVerticalArrow} alt="arrow"/>
+                <FirstArrow src={BigHorizontalArrow} alt="arrow" style={{ marginTop: 65 }}/>
                 <TextField
-                    label={t('height')}
-                    value={calculation.bigHeight === 0 ? null : calculation.bigHeight}
-                    onChange={onValueBigHeight}
+                    label={t('width')}
+                    value={calculation.width === 0 ? null : calculation.width}
+                    onChange={onValueWidth}
                     variant="outlined"
-                    style={{ width: 112, marginBottom: 8 }}
+                    style={{ width: 112, marginTop: 70 }}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
                     }}
-                /> */}
+                />
             </Form>
             <SecondArrow top="85px" src={SmallVerticalArrow} alt="arrow"/>
             <TextField
@@ -68,7 +72,7 @@ function ArchedShape() {
                 }}
             />
         </Figure>
-        <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 2 }}/>
+        {/* <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 2 }}/>
         <TextField
             label={t('width')}
             variant="outlined"
@@ -78,7 +82,7 @@ function ArchedShape() {
             InputProps={{
                 endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
             }}
-        />
+        /> */}
         <Result>
             <div>
                 <h3>{t('area')}</h3>

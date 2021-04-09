@@ -5,7 +5,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
 import { Shape, Line, Figure, FirstArrow, Form, Result} from './styles';
 
-function RoundShape() {
+interface PropsTab {
+    active: number
+}
+
+function RoundShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
@@ -27,7 +31,7 @@ function RoundShape() {
     calculation.perimeter = Math.ceil((2 * 3.1415926535 * calculation.diameter / 2) * 10) / 10;
 
     return (
-      <Shape>
+      <Shape style={ active === 0 || active === 3 ? {  display: "block" } : {  display: "none" }}>
         <h2>{t('round_shape')}</h2>
         <Line/>
         <Figure>

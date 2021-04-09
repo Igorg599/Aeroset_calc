@@ -6,7 +6,11 @@ import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
 import SmallHorizontalArrow from '../../assets/icons/SmallHorizontalArrow.svg';
 import { Shape, Line, Figure, FirstArrow, SecondArrow, FormTrapezoidal, Result} from './styles';
 
-function TrapezoidalShape() {
+interface PropsTab {
+    active: number
+}
+
+function TrapezoidalShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
@@ -38,7 +42,7 @@ function TrapezoidalShape() {
     }
 
     return (
-      <Shape>
+      <Shape style={ active === 0 || active === 4 ? {  display: "block" } : {  display: "none" }}>
         <h2>{t('trapecoidal_shape')}</h2>
         <Line/>
         <Figure>

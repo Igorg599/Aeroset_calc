@@ -15,6 +15,9 @@ export const Shape = styled.div`
         margin-left: 3px;
         color: #3A3A3A;
     }
+    @media (max-width: 767px) {
+        margin-right: 0;
+    }
 `;
 
 export const Line = styled.div`
@@ -82,7 +85,7 @@ export const FormTrapezoidal = styled.div`
 
 export const Result = styled.div`
     display: flex;
-    margin: 55px 0 0 3px;
+    margin: 32px 0 0 3px;
     h3 {
         font-style: normal;
         font-weight: normal;
