@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.js": "/aeroset_calc/static/js/main.822d96c6.chunk.js",
-    "main.js.map": "/aeroset_calc/static/js/main.822d96c6.chunk.js.map",
-    "runtime-main.js": "/aeroset_calc/static/js/runtime-main.8a013c8f.js",
-    "runtime-main.js.map": "/aeroset_calc/static/js/runtime-main.8a013c8f.js.map",
-    "static/js/2.cc409206.chunk.js": "/aeroset_calc/static/js/2.cc409206.chunk.js",
-    "static/js/2.cc409206.chunk.js.map": "/aeroset_calc/static/js/2.cc409206.chunk.js.map",
-    "index.html": "/aeroset_calc/index.html",
-    "static/js/2.cc409206.chunk.js.LICENSE.txt": "/aeroset_calc/static/js/2.cc409206.chunk.js.LICENSE.txt",
-    "static/media/Arched.e5b74b31.svg": "/aeroset_calc/static/media/Arched.e5b74b31.svg",
-    "static/media/BigHorizontalArrow.5e63f2d8.svg": "/aeroset_calc/static/media/BigHorizontalArrow.5e63f2d8.svg",
-    "static/media/BigVerticalArrow.b1970f62.svg": "/aeroset_calc/static/media/BigVerticalArrow.b1970f62.svg",
-    "static/media/Rectangular.e3d16719.svg": "/aeroset_calc/static/media/Rectangular.e3d16719.svg",
-    "static/media/Round.8c35a6f1.svg": "/aeroset_calc/static/media/Round.8c35a6f1.svg",
-    "static/media/SmallHorizontalArrow.64eb1925.svg": "/aeroset_calc/static/media/SmallHorizontalArrow.64eb1925.svg",
-    "static/media/SmallVerticalArrow.6d9848ec.svg": "/aeroset_calc/static/media/SmallVerticalArrow.6d9848ec.svg",
-    "static/media/Trapezoidal.04fcccaf.svg": "/aeroset_calc/static/media/Trapezoidal.04fcccaf.svg",
-    "static/media/getFetch.cjs": "/aeroset_calc/static/media/getFetch.d7d6010d.cjs"
+    "main.js": "/Aeroset_calc/static/js/main.6e1611ca.chunk.js",
+    "main.js.map": "/Aeroset_calc/static/js/main.6e1611ca.chunk.js.map",
+    "runtime-main.js": "/Aeroset_calc/static/js/runtime-main.24404361.js",
+    "runtime-main.js.map": "/Aeroset_calc/static/js/runtime-main.24404361.js.map",
+    "static/js/2.b64b4dc5.chunk.js": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js",
+    "static/js/2.b64b4dc5.chunk.js.map": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js.map",
+    "index.html": "/Aeroset_calc/index.html",
+    "static/js/2.b64b4dc5.chunk.js.LICENSE.txt": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js.LICENSE.txt",
+    "static/media/Arched.e5b74b31.svg": "/Aeroset_calc/static/media/Arched.e5b74b31.svg",
+    "static/media/BigHorizontalArrow.5e63f2d8.svg": "/Aeroset_calc/static/media/BigHorizontalArrow.5e63f2d8.svg",
+    "static/media/BigVerticalArrow.b1970f62.svg": "/Aeroset_calc/static/media/BigVerticalArrow.b1970f62.svg",
+    "static/media/Rectangular.e3d16719.svg": "/Aeroset_calc/static/media/Rectangular.e3d16719.svg",
+    "static/media/Round.8c35a6f1.svg": "/Aeroset_calc/static/media/Round.8c35a6f1.svg",
+    "static/media/SmallHorizontalArrow.64eb1925.svg": "/Aeroset_calc/static/media/SmallHorizontalArrow.64eb1925.svg",
+    "static/media/SmallVerticalArrow.6d9848ec.svg": "/Aeroset_calc/static/media/SmallVerticalArrow.6d9848ec.svg",
+    "static/media/Trapezoidal.04fcccaf.svg": "/Aeroset_calc/static/media/Trapezoidal.04fcccaf.svg",
+    "static/media/getFetch.cjs": "/Aeroset_calc/static/media/getFetch.d7d6010d.cjs"
   },
   "entrypoints": [
-    "static/js/runtime-main.8a013c8f.js",
-    "static/js/2.cc409206.chunk.js",
-    "static/js/main.822d96c6.chunk.js"
+    "static/js/runtime-main.24404361.js",
+    "static/js/2.b64b4dc5.chunk.js",
+    "static/js/main.6e1611ca.chunk.js"
   ]
 }
