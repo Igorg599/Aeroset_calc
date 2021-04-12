@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.js": "/Aeroset_calc/static/js/main.6e1611ca.chunk.js",
-    "main.js.map": "/Aeroset_calc/static/js/main.6e1611ca.chunk.js.map",
-    "runtime-main.js": "/Aeroset_calc/static/js/runtime-main.24404361.js",
-    "runtime-main.js.map": "/Aeroset_calc/static/js/runtime-main.24404361.js.map",
-    "static/js/2.b64b4dc5.chunk.js": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js",
-    "static/js/2.b64b4dc5.chunk.js.map": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js.map",
-    "index.html": "/Aeroset_calc/index.html",
-    "static/js/2.b64b4dc5.chunk.js.LICENSE.txt": "/Aeroset_calc/static/js/2.b64b4dc5.chunk.js.LICENSE.txt",
-    "static/media/Arched.e5b74b31.svg": "/Aeroset_calc/static/media/Arched.e5b74b31.svg",
-    "static/media/BigHorizontalArrow.5e63f2d8.svg": "/Aeroset_calc/static/media/BigHorizontalArrow.5e63f2d8.svg",
-    "static/media/BigVerticalArrow.b1970f62.svg": "/Aeroset_calc/static/media/BigVerticalArrow.b1970f62.svg",
-    "static/media/Rectangular.e3d16719.svg": "/Aeroset_calc/static/media/Rectangular.e3d16719.svg",
-    "static/media/Round.8c35a6f1.svg": "/Aeroset_calc/static/media/Round.8c35a6f1.svg",
-    "static/media/SmallHorizontalArrow.64eb1925.svg": "/Aeroset_calc/static/media/SmallHorizontalArrow.64eb1925.svg",
-    "static/media/SmallVerticalArrow.6d9848ec.svg": "/Aeroset_calc/static/media/SmallVerticalArrow.6d9848ec.svg",
-    "static/media/Trapezoidal.04fcccaf.svg": "/Aeroset_calc/static/media/Trapezoidal.04fcccaf.svg",
-    "static/media/getFetch.cjs": "/Aeroset_calc/static/media/getFetch.d7d6010d.cjs"
+    "main.js": "/static/js/main.f8e984cb.chunk.js",
+    "main.js.map": "/static/js/main.f8e984cb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e9b67e0b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e9b67e0b.js.map",
+    "static/js/2.8513724e.chunk.js": "/static/js/2.8513724e.chunk.js",
+    "static/js/2.8513724e.chunk.js.map": "/static/js/2.8513724e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.8513724e.chunk.js.LICENSE.txt": "/static/js/2.8513724e.chunk.js.LICENSE.txt",
+    "static/media/Arched.75f85b16.svg": "/static/media/Arched.75f85b16.svg",
+    "static/media/BigHorizontalArrow.5f955c79.svg": "/static/media/BigHorizontalArrow.5f955c79.svg",
+    "static/media/BigVerticalArrow.ac8c12ba.svg": "/static/media/BigVerticalArrow.ac8c12ba.svg",
+    "static/media/Rectangular.f84f1c7b.svg": "/static/media/Rectangular.f84f1c7b.svg",
+    "static/media/Round.8a7a4746.svg": "/static/media/Round.8a7a4746.svg",
+    "static/media/SmallHorizontalArrow.448bbe93.svg": "/static/media/SmallHorizontalArrow.448bbe93.svg",
+    "static/media/SmallVerticalArrow.590533d5.svg": "/static/media/SmallVerticalArrow.590533d5.svg",
+    "static/media/Trapezoidal.8843f7e0.svg": "/static/media/Trapezoidal.8843f7e0.svg",
+    "static/media/getFetch.cjs": "/static/media/getFetch.d7d6010d.cjs"
   },
   "entrypoints": [
-    "static/js/runtime-main.24404361.js",
-    "static/js/2.b64b4dc5.chunk.js",
-    "static/js/main.6e1611ca.chunk.js"
+    "static/js/runtime-main.e9b67e0b.js",
+    "static/js/2.8513724e.chunk.js",
+    "static/js/main.f8e984cb.chunk.js"
   ]
 }
