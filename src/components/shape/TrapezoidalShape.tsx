@@ -14,31 +14,55 @@ function TrapezoidalShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
-        square: number,
-        perimeter: number,
+        square: string,
+        perimeter: string,
         mediana: number,
         height: number
     }>({
-        square: 0,
-        perimeter: 0,
+        square: '0',
+        perimeter: '0',
         mediana: 0,
         height: 0
     })
 
+    const [stateFocus, setStateFocus] = React.useState<{
+        focusInputHeight: boolean,
+        focusInputMediana: boolean,
+    }>({
+        focusInputHeight: false,
+        focusInputMediana: false
+    })
+
     const onValueMediana = (e: any) => {
-        setCalculation({...calculation, mediana: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, mediana: e.target.value});
     }
 
     const onValueHeight = (e: any) => {
-        setCalculation({...calculation, height: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, height: e.target.value});
     }
 
     if (!calculation.mediana || !calculation.height) {
-        calculation.square = 0;
-        calculation.perimeter = 0;
+        calculation.square = '0';
+        calculation.perimeter = '0';
     } else {
-        calculation.square = Math.ceil((calculation.mediana * calculation.height) * 10) / 10;
-        calculation.perimeter = Math.ceil((2 * calculation.mediana + 2 * calculation.height / 0.992546152) * 10) / 10;
+        calculation.square = (Math.ceil((calculation.mediana * calculation.height) * 10) / 10).toString().replace('.', ',');
+        calculation.perimeter = (Math.ceil((2 * calculation.mediana + 2 * calculation.height / 0.992546152) * 10) / 10).toString().replace('.', ',');
+    }
+
+    function onFocusHeight() {
+        setStateFocus({...stateFocus, focusInputHeight: true})
+    }
+
+    function onBlurHeight() {
+        setStateFocus({...stateFocus, focusInputHeight: false})
+    }
+
+    function onFocusMediana() {
+        setStateFocus({...stateFocus, focusInputMediana: true})
+    }
+
+    function onBlurMediana() {
+        setStateFocus({...stateFocus, focusInputMediana: false})
     }
 
     return (
@@ -50,24 +74,30 @@ function TrapezoidalShape({active}: PropsTab) {
                 <FirstArrow src={SmallHorizontalArrow} alt="arrow" style={{ marginTop: 155, zIndex:11 }}/>
                 <TextField
                     label={t('median')}
-                    value={calculation.mediana === 0 ? null : calculation.mediana}
+                    value={calculation.mediana === 0 ? '' : calculation.mediana}
                     onChange={onValueMediana}
+                    type='number'
                     variant="outlined"
                     style={{ width: 112, marginTop: 155, zIndex:11 }}
+                    onFocus={onFocusMediana}
+                    onBlur={onBlurMediana}
                     InputProps={{
-                        endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputMediana || calculation.mediana ? t('meters') : ''}</InputAdornment>,
                     }}
                 />
             </FormTrapezoidal>
             <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow" style={{ marginLeft: 6 }}/>
             <TextField
                 label={t('height')}
-                value={calculation.height === 0 ? null : calculation.height}
-                    onChange={onValueHeight}
+                value={calculation.height === 0 ? '' : calculation.height}
+                onChange={onValueHeight}
+                type='number'
                 variant="outlined"
                 style={{ width: 112, top: 54, marginLeft: 16 }}
+                onFocus={onFocusHeight}
+                onBlur={onBlurHeight}
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputHeight || calculation.height ? t('meters') : ''}</InputAdornment>,
                 }}
             />
         </Figure>

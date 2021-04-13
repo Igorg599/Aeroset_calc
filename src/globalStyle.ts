@@ -19,6 +19,13 @@ export const GlobalStyle = createGlobalStyle`
     touch-action: none;
     -ms-touch-action: none;
     }
+    input[type='number'] {
+      -moz-appearance:textfield;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
   }
 
   code {

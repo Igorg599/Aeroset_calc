@@ -16,7 +16,7 @@ const App = () => {
   const imgTabs: string[] = [ArchedImg, RectangularImg, RoundImg, TrapezoidalImg];
 
   const setSizeScreen = () => {
-    if (window.innerWidth >= 767) {
+    if (document.documentElement.clientWidth >= 767) {
       setActiveTabs(0);
     } else {
       setActiveTabs(1);
@@ -25,9 +25,6 @@ const App = () => {
 
   React.useEffect(() => {
     setSizeScreen();
-    window.addEventListener('resize', () => {
-      setSizeScreen();
-    });
   }, [])
 
   return (

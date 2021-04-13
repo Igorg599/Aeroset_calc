@@ -13,22 +13,36 @@ function RoundShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
-        square: number,
-        perimeter: number,
+        square: string,
+        perimeter: string,
         diameter: number
     }>({
-        square: 0,
-        perimeter: 0,
+        square: "0",
+        perimeter: "0",
         diameter: 0
     })
 
+    const [stateFocus, setStateFocus] = React.useState<{
+        focusInputDiameter: Boolean
+    }>({
+        focusInputDiameter: false
+    })
+
     const onValueDiameter = (e: any) => {
-        setCalculation({...calculation, diameter: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, diameter: e.target.value});
     }
 
-    calculation.square = Math.ceil(((calculation.diameter / 2 ) * (calculation.diameter / 2 ) * 3.1415926535) * 10) / 10;
+    calculation.square = (Math.ceil(((calculation.diameter / 2 ) * (calculation.diameter / 2 ) * 3.1415926535) * 10) / 10).toString().replace('.', ',');
 
-    calculation.perimeter = Math.ceil((2 * 3.1415926535 * calculation.diameter / 2) * 10) / 10;
+    calculation.perimeter = (Math.ceil((2 * 3.1415926535 * calculation.diameter / 2) * 10) / 10).toString().replace('.', ',');
+
+    function onFocusDiameter() {
+        setStateFocus({...stateFocus, focusInputDiameter: true})
+    }
+
+    function onBlurDiameter() {
+        setStateFocus({...stateFocus, focusInputDiameter: false})
+    }
 
     return (
       <Shape style={ active === 0 || active === 3 ? {  display: "block" } : {  display: "none" }}>
@@ -39,12 +53,15 @@ function RoundShape({active}: PropsTab) {
                 <FirstArrow src={BigVerticalArrow} alt="arrow"/>
                 <TextField
                     label={t('diameter')}
-                    value={calculation.diameter === 0 ? null : calculation.diameter}
+                    value={calculation.diameter === 0 ? '' : calculation.diameter}
                     onChange={onValueDiameter}
+                    type='number'
                     variant="outlined"
                     style={{ width: 112, marginBottom: 6 }}
+                    onFocus={onFocusDiameter}
+                    onBlur={onBlurDiameter}
                     InputProps={{
-                        endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputDiameter || calculation.diameter ? t('meters') : ''}</InputAdornment>,
                     }}
                 />
             </Form>

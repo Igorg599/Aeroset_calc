@@ -14,31 +14,55 @@ function RectangularShape({active}: PropsTab) {
     const {t} = useTranslation();
 
     const [calculation, setCalculation] = React.useState<{
-        square: number,
-        perimeter: number,
+        square: string,
+        perimeter: string,
         bigHeight: number,
         width: number
     }>({
-        square: 0,
-        perimeter: 0,
+        square: '0',
+        perimeter: '0',
         bigHeight: 0,
         width: 0
     })
 
+    const [stateFocus, setStateFocus] = React.useState<{
+        focusInputHeight: boolean,
+        focusInputWidth: boolean,
+    }>({
+        focusInputHeight: false,
+        focusInputWidth: false
+    })
+
     const onValueBigHeight = (e: any) => {
-        setCalculation({...calculation, bigHeight: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, bigHeight: e.target.value});
     }
 
     const onValueWidth = (e: any) => {
-        setCalculation({...calculation, width: e.target.value.replace(/[^0-9.]/g, '')});
+        setCalculation({...calculation, width: e.target.value});
     }
 
     if (!calculation.bigHeight || !calculation.width) {
-        calculation.square = 0;
-        calculation.perimeter = 0;
+        calculation.square = '0';
+        calculation.perimeter = '0';
     } else {
-        calculation.square = Math.ceil((calculation.bigHeight * calculation.width) * 10) / 10;
-        calculation.perimeter = Math.ceil((calculation.bigHeight * 2 + calculation.width * 2) * 10) / 10;
+        calculation.square = (Math.ceil((calculation.bigHeight * calculation.width) * 10) / 10).toString().replace('.', ',');
+        calculation.perimeter = (Math.ceil((calculation.bigHeight * 2 + calculation.width * 2) * 10) / 10).toString().replace('.', ',');
+    }
+
+    function onFocusWidth() {
+        setStateFocus({...stateFocus, focusInputWidth: true})
+    }
+
+    function onBlurWidth() {
+        setStateFocus({...stateFocus, focusInputWidth: false})
+    }
+
+    function onFocusHeight() {
+        setStateFocus({...stateFocus, focusInputHeight: true})
+    }
+
+    function onBlurHeight() {
+        setStateFocus({...stateFocus, focusInputHeight: false})
     }
 
     return (
@@ -51,23 +75,29 @@ function RectangularShape({active}: PropsTab) {
                 <TextField
                     label={t('width')}
                     variant="outlined"
-                    value={calculation.width === 0 ? null : calculation.width}
+                    type='number'
+                    value={calculation.width === 0 ? '' : calculation.width}
                     onChange={onValueWidth}
                     style={{ width: 112 }}
+                    onFocus={onFocusWidth}
+                    onBlur={onBlurWidth}
                     InputProps={{
-                        endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
                     }}
                 />
             </Form>
             <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow"/>
             <TextField
                 label={t('height')}
-                value={calculation.bigHeight === 0 ? null : calculation.bigHeight}
+                value={calculation.bigHeight === 0 ? '' : calculation.bigHeight}
                 onChange={onValueBigHeight}
+                type='number'
                 variant="outlined"
                 style={{ width: 112, top: 54, marginLeft: 16 }}
+                onFocus={onFocusHeight}
+                onBlur={onBlurHeight}
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">{t('meters')}</InputAdornment>,
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputHeight || calculation.bigHeight ? t('meters') : ''}</InputAdornment>,
                 }}
             />
         </Figure>
