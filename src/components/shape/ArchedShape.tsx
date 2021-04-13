@@ -17,12 +17,14 @@ function ArchedShape({active}: PropsTab) {
     const [calculation, setCalculation] = React.useState<{
         square: string,
         perimeter: string,
-        height: number,
+        heightSmall: number,
+        heightBig: number,
         width: number
     }>({
         square: "0",
         perimeter: "0",
-        height: 0,
+        heightSmall: 0,
+        heightBig: 0,
         width: 0
     })
 
@@ -36,21 +38,63 @@ function ArchedShape({active}: PropsTab) {
         focusInputWidth: false
     })
 
+    calculation.heightSmall = Math.min(calculation.heightSmall, calculation.heightBig);
+
     const onValueSmallHeight = (e: any) => {
-        setCalculation({...calculation, height: e.target.value});
+        setCalculation({...calculation, heightSmall: e.target.value});
+    }
+
+    const onValueBigHeight = (e: any) => {
+        setCalculation({...calculation, heightBig: e.target.value});
     }
 
     const onValueWidth = (e: any) => {
         setCalculation({...calculation, width: e.target.value});
     }
 
-    if (!calculation.height || !calculation.width) {
-        calculation.square = "0";
+    if (!calculation.heightSmall || !calculation.width) {
         calculation.perimeter = "0";
     } else {
-        calculation.square = (Math.ceil(((calculation.height * calculation.width) + ((calculation.width / 2) * (calculation.width / 2) / 2 * 3.1415926535)) * 10) / 10).toString().replace('.', ',');  
+        calculation.perimeter = (Math.ceil(((+calculation.heightSmall) + (+calculation.heightSmall) + (+calculation.width) + (+calculation.width / 2 * 3.1415926535)) * 10) / 10).toString().replace('.', ',');
+    }
 
-        calculation.perimeter = (Math.ceil(((+calculation.height) + (+calculation.height) + (+calculation.width) + (+calculation.width / 2 * 3.1415926535)) * 10) / 10).toString().replace('.', ',');
+    if (!calculation.heightSmall || !calculation.width || !calculation.heightBig) {
+        calculation.square = "0";
+    } else {
+        if (Math.abs(calculation.heightBig - calculation.heightSmall) < 0.0000001) {
+            calculation.square = (Math.ceil((calculation.width * calculation.heightSmall) * 10) / 10).toString().replace('.', ',');
+        } else {
+            if ((calculation.heightBig - calculation.heightSmall) < (calculation.width / 2)) {
+                const l = Math.sqrt((calculation.heightBig - calculation.heightSmall) * (calculation.heightBig - calculation.heightSmall) + (calculation.width / 2) * (calculation.width / 2));
+    
+                const r = l * l / (2 * (calculation.heightBig - calculation.heightSmall));
+    
+                const phi = Math.asin((calculation.width / 2) / r);
+    
+                const s1 = calculation.width * calculation.heightSmall;
+    
+                const s2 = Math.PI * r * r * (phi / Math.PI);
+    
+                const s3 = 0.5 * r * r * Math.sin(2 * phi);
+    
+                calculation.square = (Math.ceil((s1 + s2 - s3) * 10) / 10).toString().replace('.', ',');
+            }
+            if ((calculation.heightBig - calculation.heightSmall) > (calculation.width / 2)) {
+                const l = Math.sqrt((calculation.heightBig - calculation.heightSmall) * (calculation.heightBig - calculation.heightSmall) + (calculation.width / 2) * (calculation.width / 2));
+    
+                const r = l * l / (2 * (calculation.heightBig - calculation.heightSmall));
+    
+                const phi = Math.asin((calculation.width / 2) / r);
+    
+                const s1 = calculation.width * calculation.heightSmall;
+    
+                const s2 = Math.PI * r * r * (1 - phi / Math.PI);
+    
+                const s3 = 0.5 * r * r * Math.sin(2 * phi);
+    
+                calculation.square = (Math.ceil((s1 + s2 + s3) * 10) / 10).toString().replace('.', ',');
+            }
+        }
     }
 
     function onFocusWidth() {
@@ -86,15 +130,15 @@ function ArchedShape({active}: PropsTab) {
                 <FirstArrow src={BigVerticalArrow} alt="arrow"/>
                 <TextField
                     label={t('height')}
-                    value={calculation.width === 0 ? '' : calculation.width}
-                    onChange={onValueWidth}
+                    value={calculation.heightBig === 0 ? '' : calculation.heightBig}
+                    onChange={onValueBigHeight}
                     type='number'
                     variant="outlined"
                     style={{ width: 112, marginTop: -5 }}
                     onFocus={onFocusBigHeight}
                     onBlur={onBlurBigHeight}
                     InputProps={{
-                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputBigHeight || calculation.width ? t('meters') : ''}</InputAdornment>,
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputBigHeight || calculation.heightBig ? t('meters') : ''}</InputAdornment>,
                     }}
                 />
             </Form>
@@ -102,14 +146,14 @@ function ArchedShape({active}: PropsTab) {
             <TextField
                 label={t('height')}
                 variant="outlined"
-                value={calculation.height === 0 ? '' : calculation.height}
+                value={calculation.heightSmall === 0 ? '' : calculation.heightSmall}
                 type='number'
                 onChange={onValueSmallHeight}
                 style={{ width: 112, top: 98, marginLeft: 16 }}
                 onFocus={onFocusSmallHeight}
                 onBlur={onBlurSmallHeight}
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputSmallHeight || calculation.height ? t('meters') : ''}</InputAdornment>,
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputSmallHeight || calculation.heightSmall ? t('meters') : ''}</InputAdornment>,
                 }}
             />
         </Figure>
