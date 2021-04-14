@@ -7,7 +7,6 @@ export const Button = styled.button`
     border: none;
     background: rgba(0, 163, 197, 0.12);
     outline: none;
-    cursor: pointer;
     @media (max-width: 767px) {
         background: #3A3A3A;
         margin-top: 4px;
@@ -19,6 +18,7 @@ export const Menu = styled.div`
     margin: 0 auto;
     width: 18px;
     height: 12px;
+    cursor: pointer;
     span {
         display: block;
         height: 2px;

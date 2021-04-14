@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import { createMuiTheme } from '@material-ui/core/styles';
+
+export const theme = createMuiTheme({
+    palette: {
+        primary: {
+        main: '#7DCFE4' //your color
+        }
+    }
+});
 
 export const Shape = styled.div`
     width: 328px;
@@ -6,7 +15,7 @@ export const Shape = styled.div`
     background: #FFFFFF;
     border-radius: 4px;
     margin-right: 28px;
-    h1 {
+    h2 {
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
@@ -100,7 +109,7 @@ export const Result = styled.div`
         font-size: 34px;
         line-height: 36px;
         color: #3A3A3A;
-        margin-top: 12px;
+        margin: 12px 0 0 0;
     }
     h4 {
         font-style: normal;
@@ -108,5 +117,6 @@ export const Result = styled.div`
         font-size: 14px;
         line-height: 20px;
         color: rgba(58, 58, 58, 0.74);
+        margin-top: 6px;
     }
 `;

@@ -3,7 +3,8 @@ import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, Form, Result} from './styles';
+import { Shape, Line, Figure, FirstArrow, Form, Result, theme} from './styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 interface PropsTab {
     active: number
@@ -51,19 +52,21 @@ function RoundShape({active}: PropsTab) {
         <Figure>
             <Form radius="84px">
                 <FirstArrow src={BigVerticalArrow} alt="arrow"/>
-                <TextField
-                    label={t('diameter')}
-                    value={calculation.diameter === 0 ? '' : calculation.diameter}
-                    onChange={onValueDiameter}
-                    type='number'
-                    variant="outlined"
-                    style={{ width: 112, marginBottom: 6 }}
-                    onFocus={onFocusDiameter}
-                    onBlur={onBlurDiameter}
-                    InputProps={{
-                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputDiameter || calculation.diameter ? t('meters') : ''}</InputAdornment>,
-                    }}
-                />
+                <ThemeProvider theme={theme}>
+                    <TextField
+                        label={t('diameter')}
+                        value={calculation.diameter === 0 ? '' : calculation.diameter}
+                        onChange={onValueDiameter}
+                        type='number'
+                        variant="outlined"
+                        style={{ width: 112, marginBottom: 6 }}
+                        onFocus={onFocusDiameter}
+                        onBlur={onBlurDiameter}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">{stateFocus.focusInputDiameter || calculation.diameter ? t('meters') : ''}</InputAdornment>,
+                        }}
+                    />
+                </ThemeProvider>
             </Form>
         </Figure>
         <Result>

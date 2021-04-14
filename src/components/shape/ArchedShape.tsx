@@ -5,7 +5,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SmallVerticalArrow from '../../assets/icons/SmallVerticalArrow.svg';
 import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, Form, Result} from './styles';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, Form, Result, theme} from './styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 interface PropsTab {
     active: number
@@ -128,49 +129,56 @@ function ArchedShape({active}: PropsTab) {
         <Figure>
             <Form radius="84px 84px 0 0">
                 <FirstArrow src={BigVerticalArrow} alt="arrow"/>
-                <TextField
-                    label={t('height')}
-                    value={calculation.heightBig === 0 ? '' : calculation.heightBig}
-                    onChange={onValueBigHeight}
-                    type='number'
-                    variant="outlined"
-                    style={{ width: 112, marginTop: -5 }}
-                    onFocus={onFocusBigHeight}
-                    onBlur={onBlurBigHeight}
-                    InputProps={{
-                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputBigHeight || calculation.heightBig ? t('meters') : ''}</InputAdornment>,
-                    }}
-                />
+                <ThemeProvider theme={theme}>
+                    <TextField
+                        label={t('height')}
+                        value={calculation.heightBig === 0 ? '' : calculation.heightBig}
+                        onChange={onValueBigHeight}
+                        type='number'
+                        variant="outlined"
+                        style={{ width: 112, marginTop: -5, color: 'black' }}
+                        onFocus={onFocusBigHeight}
+                        onBlur={onBlurBigHeight}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">{stateFocus.focusInputBigHeight || calculation.heightBig ? t('meters') : ''}</InputAdornment>,
+                        }}
+                    />
+                </ThemeProvider>
             </Form>
             <SecondArrow top="85px" src={SmallVerticalArrow} alt="arrow"/>
-            <TextField
-                label={t('height')}
-                variant="outlined"
-                value={calculation.heightSmall === 0 ? '' : calculation.heightSmall}
-                type='number'
-                onChange={onValueSmallHeight}
-                style={{ width: 112, top: 98, marginLeft: 16 }}
-                onFocus={onFocusSmallHeight}
-                onBlur={onBlurSmallHeight}
-                InputProps={{
-                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputSmallHeight || calculation.heightSmall ? t('meters') : ''}</InputAdornment>,
-                }}
-            />
+            <ThemeProvider theme={theme}>
+                <TextField
+                    label={t('height')}
+                    variant="outlined"
+                    value={calculation.heightSmall === 0 ? '' : calculation.heightSmall}
+                    type='number'
+                    onChange={onValueSmallHeight}
+                    style={{ width: 112, top: 98, marginLeft: 16 }}
+                    onFocus={onFocusSmallHeight}
+                    onBlur={onBlurSmallHeight}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputSmallHeight || calculation.heightSmall ? t('meters') : ''}</InputAdornment>,
+                    }}
+                />
+            </ThemeProvider>
         </Figure>
         <ThirdArrow src={BigHorizontalArrow} alt="arrow" style={{ marginLeft: 2 }}/>
-        <TextField
-            label={t('width')}
-            variant="outlined"
-            value={calculation.width === 0 ? '' : calculation.width}
-            type='number'
-            onChange={onValueWidth}
-            style={{ width: 112, top: 24, marginLeft: 28 }}
-            onFocus={onFocusWidth}
-            onBlur={onBlurWidth}
-            InputProps={{
-                endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
-            }}
-        />
+        <ThemeProvider theme={theme}>
+            <TextField
+                label={t('width')}
+                variant="outlined"
+                value={calculation.width === 0 ? '' : calculation.width}
+                type='number'
+                onChange={onValueWidth}
+                style={{ width: 112, top: 24, marginLeft: 28}}
+                onFocus={onFocusWidth}
+                onBlur={onBlurWidth}
+                className='input'
+                InputProps={{
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
+                }}
+            />
+        </ThemeProvider>
         <Result>
             <div>
                 <h3>{t('area')}</h3>

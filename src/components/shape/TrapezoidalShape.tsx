@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
 import SmallHorizontalArrow from '../../assets/icons/SmallHorizontalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, FormTrapezoidal, Result} from './styles';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, FormTrapezoidal, Result, theme} from './styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 interface PropsTab {
     active: number
@@ -72,34 +73,38 @@ function TrapezoidalShape({active}: PropsTab) {
         <Figure>
             <FormTrapezoidal>
                 <FirstArrow src={SmallHorizontalArrow} alt="arrow" style={{ marginTop: 155, zIndex:11 }}/>
-                <TextField
-                    label={t('median')}
-                    value={calculation.mediana === 0 ? '' : calculation.mediana}
-                    onChange={onValueMediana}
-                    type='number'
-                    variant="outlined"
-                    style={{ width: 112, marginTop: 155, zIndex:11 }}
-                    onFocus={onFocusMediana}
-                    onBlur={onBlurMediana}
-                    InputProps={{
-                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputMediana || calculation.mediana ? t('meters') : ''}</InputAdornment>,
-                    }}
-                />
+                <ThemeProvider theme={theme}>
+                    <TextField
+                        label={t('median')}
+                        value={calculation.mediana === 0 ? '' : calculation.mediana}
+                        onChange={onValueMediana}
+                        type='number'
+                        variant="outlined"
+                        style={{ width: 112, marginTop: 155, zIndex:11 }}
+                        onFocus={onFocusMediana}
+                        onBlur={onBlurMediana}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">{stateFocus.focusInputMediana || calculation.mediana ? t('meters') : ''}</InputAdornment>,
+                        }}
+                    />
+                </ThemeProvider>
             </FormTrapezoidal>
             <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow" style={{ marginLeft: 6 }}/>
-            <TextField
-                label={t('height')}
-                value={calculation.height === 0 ? '' : calculation.height}
-                onChange={onValueHeight}
-                type='number'
-                variant="outlined"
-                style={{ width: 112, top: 54, marginLeft: 16 }}
-                onFocus={onFocusHeight}
-                onBlur={onBlurHeight}
-                InputProps={{
-                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputHeight || calculation.height ? t('meters') : ''}</InputAdornment>,
-                }}
-            />
+            <ThemeProvider theme={theme}>
+                <TextField
+                    label={t('height')}
+                    value={calculation.height === 0 ? '' : calculation.height}
+                    onChange={onValueHeight}
+                    type='number'
+                    variant="outlined"
+                    style={{ width: 112, top: 54, marginLeft: 16 }}
+                    onFocus={onFocusHeight}
+                    onBlur={onBlurHeight}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">{stateFocus.focusInputHeight || calculation.height ? t('meters') : ''}</InputAdornment>,
+                    }}
+                />
+            </ThemeProvider>
         </Figure>
         <Result>
             <div>
