@@ -72,22 +72,6 @@ function RectangularShape({active}: PropsTab) {
         <Line/>
         <Figure>
             <Form radius="0">
-                <ThirdArrow src={BigHorizontalArrow} style={{ marginBottom: 20, marginRight: 2 }} alt="arrow"/>
-                <ThemeProvider theme={theme}>
-                    <TextField
-                        label={t('width')}
-                        variant="outlined"
-                        type='number'
-                        value={calculation.width === 0 ? '' : calculation.width}
-                        onChange={onValueWidth}
-                        style={{ width: 112 }}
-                        onFocus={onFocusWidth}
-                        onBlur={onBlurWidth}
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
-                        }}
-                    />
-                </ThemeProvider>
             </Form>
             <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow"/>
             <ThemeProvider theme={theme}>
@@ -106,6 +90,22 @@ function RectangularShape({active}: PropsTab) {
                 />
             </ThemeProvider>
         </Figure>
+        <ThirdArrow src={BigHorizontalArrow} style={{ marginBottom: 20 }} alt="arrow"/>
+        <ThemeProvider theme={theme}>
+            <TextField
+                label={t('width')}
+                variant="outlined"
+                type='number'
+                value={calculation.width === 0 ? '' : calculation.width}
+                onChange={onValueWidth}
+                style={{ width: 112, top: 24, marginLeft: 27 }}
+                onFocus={onFocusWidth}
+                onBlur={onBlurWidth}
+                InputProps={{
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
+                }}
+            />
+        </ThemeProvider>
         <Result>
             <div>
                 <h3>{t('area')}</h3>

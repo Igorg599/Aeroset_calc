@@ -3,8 +3,9 @@ import {useTranslation} from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import BigVerticalArrow from '../../assets/icons/BigVerticalArrow.svg';
+import BigHorizontalArrow from '../../assets/icons/BigHorizontalArrow.svg';
 import SmallHorizontalArrow from '../../assets/icons/SmallHorizontalArrow.svg';
-import { Shape, Line, Figure, FirstArrow, SecondArrow, FormTrapezoidal, Result, theme} from './styles';
+import { Shape, Line, Figure, FirstArrow, SecondArrow, ThirdArrow, FormTrapezoidal, Result, theme} from './styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 interface PropsTab {
@@ -18,20 +19,28 @@ function TrapezoidalShape({active}: PropsTab) {
         square: string,
         perimeter: string,
         mediana: number,
-        height: number
+        height: number,
+        width: number
     }>({
         square: '0',
         perimeter: '0',
         mediana: 0,
-        height: 0
+        height: 0,
+        width: 0
     })
+
+    if (calculation.width) {
+        calculation.mediana = Math.min(calculation.mediana, calculation.width);
+    }
 
     const [stateFocus, setStateFocus] = React.useState<{
         focusInputHeight: boolean,
         focusInputMediana: boolean,
+        focusInputWidth: boolean
     }>({
         focusInputHeight: false,
-        focusInputMediana: false
+        focusInputMediana: false,
+        focusInputWidth: false
     })
 
     const onValueMediana = (e: any) => {
@@ -42,12 +51,29 @@ function TrapezoidalShape({active}: PropsTab) {
         setCalculation({...calculation, height: e.target.value});
     }
 
-    if (!calculation.mediana || !calculation.height) {
-        calculation.square = '0';
-        calculation.perimeter = '0';
-    } else {
+    const onValueWidth = (e: any) => {
+        setCalculation({...calculation, width: e.target.value});
+    }
+
+    if (calculation.mediana && calculation.height && !calculation.width) {
+
         calculation.square = (Math.ceil((calculation.mediana * calculation.height) * 10) / 10).toString().replace('.', ',');
         calculation.perimeter = (Math.ceil((2 * calculation.mediana + 2 * calculation.height / 0.992546152) * 10) / 10).toString().replace('.', ',');
+
+    } else if (calculation.mediana && calculation.height && calculation.width) {
+
+        calculation.square = (Math.ceil((calculation.mediana * calculation.height) * 10) / 10).toString().replace('.', ',');
+        calculation.perimeter = (Math.ceil((+calculation.width + (2 * (calculation.mediana - (calculation.width / 2)) + (2 * Math.sqrt(Math.pow(calculation.height, 2) + Math.pow((calculation.width - calculation.mediana), 2))))) * 10) / 10).toString().replace('.', ',');
+
+    } else if (!calculation.mediana && calculation.height && calculation.width) {
+
+        calculation.square = (Math.ceil((calculation.height * (calculation.width - (calculation.height / 0.992546152 * 0.121869343)) ) * 10) / 10).toString().replace('.', ',');
+        calculation.perimeter = (Math.ceil((+calculation.width + (calculation.height / 0.992546152 * 2) + (calculation.width - 2 * calculation.height * 0.12278456)) * 10) / 10).toString().replace('.', ',');
+    } else {
+
+        calculation.square = '0';
+        calculation.perimeter = '0';
+
     }
 
     function onFocusHeight() {
@@ -66,6 +92,14 @@ function TrapezoidalShape({active}: PropsTab) {
         setStateFocus({...stateFocus, focusInputMediana: false})
     }
 
+    function onFocusWidth() {
+        setStateFocus({...stateFocus, focusInputWidth: true})
+    }
+
+    function onBlurWidth() {
+        setStateFocus({...stateFocus, focusInputWidth: false})
+    }
+
     return (
       <Shape style={ active === 0 || active === 4 ? {  display: "block" } : {  display: "none" }}>
         <h2>{t('trapecoidal_shape')}</h2>
@@ -75,7 +109,7 @@ function TrapezoidalShape({active}: PropsTab) {
                 <FirstArrow src={SmallHorizontalArrow} alt="arrow" style={{ marginTop: 155, zIndex:11 }}/>
                 <ThemeProvider theme={theme}>
                     <TextField
-                        label={t('median')}
+                        label={t('width')}
                         value={calculation.mediana === 0 ? '' : calculation.mediana}
                         onChange={onValueMediana}
                         type='number'
@@ -106,6 +140,22 @@ function TrapezoidalShape({active}: PropsTab) {
                 />
             </ThemeProvider>
         </Figure>
+        <ThirdArrow src={BigHorizontalArrow} style={{ marginBottom: 20, marginLeft: 5 }} alt="arrow"/>
+        <ThemeProvider theme={theme}>
+            <TextField
+                label={t('width')}
+                variant="outlined"
+                type='number'
+                value={calculation.width === 0 ? '' : calculation.width}
+                onChange={onValueWidth}
+                style={{ width: 112, top: 24, marginLeft: 31 }}
+                onFocus={onFocusWidth}
+                onBlur={onBlurWidth}
+                InputProps={{
+                    endAdornment: <InputAdornment position="end">{stateFocus.focusInputWidth || calculation.width ? t('meters') : ''}</InputAdornment>,
+                }}
+            />
+        </ThemeProvider>
         <Result>
             <div>
                 <h3>{t('area')}</h3>

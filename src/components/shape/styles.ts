@@ -26,6 +26,7 @@ export const Shape = styled.div`
     }
     @media (max-width: 767px) {
         margin-right: 0;
+        width: 100vw;
     }
 `;
 
@@ -71,24 +72,28 @@ export const FormTrapezoidal = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 173px solid black;
+    border-bottom: 171.5px solid black;
     border-left: 27px solid transparent;
     border-right: 27px solid transparent;
     height: 0;
-    width: 182px;
+    width: 180px;
     position: relative;
     :after {
         content: '';
         z-index: 10;
         position: absolute;
-        top:-2px;
         left: -24px;
         top: 2px;
         height: 0;
-        width: 168px;
-        border-bottom: 168px solid white;
-        border-left: 25px solid transparent;
-        border-right: 25px solid transparent;
+        width: 167px;
+        border-bottom: 167px solid white;
+        border-left: 25.5px solid transparent;
+        border-right: 25.5px solid transparent;
+    }
+    @media (max-width: 767px) {
+        :after {
+            width: 173.5px;
+        }
     }
 `;
 

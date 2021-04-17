@@ -19,16 +19,4 @@ export const Menu = styled.div`
     width: 18px;
     height: 12px;
     cursor: pointer;
-    span {
-        display: block;
-        height: 2px;
-        width: 100%;
-        background-color: black;
-        margin-bottom: 2px;
-    }
-    @media (max-width: 767px) {
-        span {
-            background-color: white;
-        }
-    }
 `;
