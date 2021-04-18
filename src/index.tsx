@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './components/app/index';
 import "./internationalization/i18n";
 import {GlobalStyle} from "./globalStyle";
-import * as serviceWorker from './serviceWorker';
-// @ts-ignore
-import initWorkboxRefresh from '@loopmode/cra-workbox-refresh';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,9 +16,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.register({
-  onUpdate: (registration: any) => {
-      // @ts-ignore
-      return initWorkboxRefresh(registration, {render: renderRefreshUI});
-  }
-})
+serviceWorkerRegistration.register();
