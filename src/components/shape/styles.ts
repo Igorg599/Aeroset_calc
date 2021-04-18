@@ -68,33 +68,26 @@ export const Form = styled.div<{ radius?: string }>`
     margin: auto 0;
 `;
 
-export const FormTrapezoidal = styled.div`
+export const FormTrapezoidalBig = styled.div`
     display: flex;
-    align-items: center;
     justify-content: center;
-    border-bottom: 171.5px solid black;
+    border-bottom: 165.5px solid black;
     border-left: 27px solid transparent;
     border-right: 27px solid transparent;
     height: 0;
-    width: 180px;
-    position: relative;
-    :after {
-        content: '';
-        z-index: 10;
-        position: absolute;
-        left: -24px;
-        top: 2px;
-        height: 0;
-        width: 167px;
-        border-bottom: 167px solid white;
-        border-left: 25.5px solid transparent;
-        border-right: 25.5px solid transparent;
-    }
-    @media (max-width: 767px) {
-        :after {
-            width: 173.5px;
-        }
-    }
+    width: 172px;
+`;
+
+export const FormTrapezoidalSmall = styled.div`
+    display: flex;
+    margin: 2.5px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 160.5px solid white;
+    border-left: 26px solid transparent;
+    border-right: 26px solid transparent;
+    height: 0;
+    width: 167.5px;
 `;
 
 export const Result = styled.div`
